@@ -10,7 +10,6 @@ def play():
     print(f"Computer chose {computer_choice}.")
     if user_choice == computer_choice:
         print("It's a draw!")
-    elif _user_wins.__contains__((user_choice, computer_choice)):
         print("You win!")
     else:
         print("You lose!")
