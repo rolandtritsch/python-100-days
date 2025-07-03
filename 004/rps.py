@@ -10,6 +10,7 @@ def play():
     print(f"Computer chose {computer_choice}.")
     if user_choice == computer_choice:
         print("It's a draw!")
+    elif (user_choice, computer_choice) in _user_wins:
         print("You win!")
     else:
         print("You lose!")
