@@ -1,0 +1,13 @@
+def main():
+    print(f"annotations: {__annotations__}")
+    print(f"builtins: {__builtins__}")
+    print(f"cached: {__cached__}")
+    print(f"doc: {__doc__}")
+    print(f"file: {__file__}")
+    print(f"loader: {__loader__}")
+    print(f"name: {__name__}")
+    print(f"package: {__package__}")
+    print(f"spec: {__spec__}")
+
+if __name__ == "__main__":
+    main()
