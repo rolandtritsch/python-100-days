@@ -1,4 +1,4 @@
-""" A passord generator (PWG)"""
+"""A passord generator (PWG)"""
 
 import string
 import random
@@ -6,8 +6,10 @@ import sys
 
 _characters = string.ascii_letters + string.digits + string.punctuation
 
+
 def generate_password(length):
-    return ''.join(random.choice(_characters) for _ in range(length))
+    return "".join(random.choice(_characters) for _ in range(length))
+
 
 def process_args(args):
     if len(args) != 2:
@@ -25,12 +27,14 @@ def process_args(args):
 
     return length
 
+
 def main():
     length = process_args(sys.argv)
     password = generate_password(length)
     print(f"Generated password: {password}")
 
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()

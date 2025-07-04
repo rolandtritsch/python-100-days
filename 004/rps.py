@@ -6,6 +6,7 @@ import sys
 _rps = ["R", "P", "S"]
 _user_wins = [("R", "S"), ("P", "R"), ("S", "P")]
 
+
 def play() -> None:
     """Play a game of Rock Paper Scissors"""
 
@@ -21,6 +22,7 @@ def play() -> None:
         print("You lose!")
 
     sys.exit(0)
+
 
 if __name__ == "__main__":
     play()

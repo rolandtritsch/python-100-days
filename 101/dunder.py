@@ -6,6 +6,7 @@ These are special methods that start and end with double underscores.
 
 import sys
 
+
 def main():
     print(f"annotations: {__annotations__}")
     print(f"builtins: {__builtins__}")
@@ -18,6 +19,7 @@ def main():
     print(f"spec: {__spec__}")
 
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
