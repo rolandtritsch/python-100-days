@@ -3,15 +3,16 @@
 import string
 import random
 import sys
+from typing import List
 
 _characters = string.ascii_letters + string.digits + string.punctuation
 
 
-def generate_password(length):
+def generate_password(length: int) -> str:
     return "".join(random.choice(_characters) for _ in range(length))
 
 
-def process_args(args):
+def process_args(args: List[str]) -> int:
     if len(args) != 2:
         print("Usage: python pwg.py <length>")
         sys.exit(1)
@@ -28,7 +29,7 @@ def process_args(args):
     return length
 
 
-def main():
+def main() -> None:
     length = process_args(sys.argv)
     password = generate_password(length)
     print(f"Generated password: {password}")
