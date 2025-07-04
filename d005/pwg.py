@@ -1,9 +1,8 @@
 """A passord generator (PWG)"""
 
-import string
 import random
+import string
 import sys
-
 import typing
 
 _characters = string.ascii_letters + string.digits + string.punctuation
