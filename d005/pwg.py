@@ -3,7 +3,8 @@
 import string
 import random
 import sys
-from typing import List
+
+import typing
 
 _characters = string.ascii_letters + string.digits + string.punctuation
 
@@ -12,7 +13,7 @@ def generate_password(length: int) -> str:
     return "".join(random.choice(_characters) for _ in range(length))
 
 
-def process_args(args: List[str]) -> int:
+def process_args(args: typing.List[str]) -> int:
     if len(args) != 2:
         print("Usage: python pwg.py <length>")
         sys.exit(1)
