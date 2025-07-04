@@ -1,0 +1,8 @@
+version = 1
+revision = 2
+requires-python = ">=3.8"
+
+[[package]]
+name = "python-100-days"
+version = "0.1.0"
+source = { virtual = "." }
