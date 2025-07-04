@@ -1,4 +1,4 @@
-import caesar
+import d008.caesar as caesar
 
 
 def test_chr2idx():
