@@ -1,3 +1,5 @@
+"""Day 002 - Tip Calculator"""
+
 _amount = float(input("Enter the amount: "))
 _tip = int(input("Enter the tip percentage: "))
 _number_of_people = int(input("Enter the number of people: "))

@@ -1,3 +1,5 @@
+"""Caesar cipher encoder/decoder"""
+
 import argparse
 import string
 import sys
@@ -13,20 +15,24 @@ ALPHABET = (
 
 
 def chr2idx(char: str) -> int:
+    """Return the index of a character in the alphabet"""
     assert char in ALPHABET, f"Character '{char}' not in alphabet"
     return ALPHABET.index(char)
 
 
 def idx2chr(i: int) -> str:
+    """Return the character at the given index in the alphabet"""
     assert 0 <= i < len(ALPHABET), f"Index {i} out of alphabet range"
     return ALPHABET[i]
 
 
 def shift(i: int, n: int) -> int:
+    """Return the index of a character shifted by n positions in the alphabet"""
     return (i + n) % len(ALPHABET)
 
 
 def encode(text: str, n: int) -> str:
+    """Return the encoded text using Caesar cipher"""
     idxs = map(chr2idx, text)
     shifts = map(lambda i: shift(i, n), idxs)
     encoded = map(idx2chr, shifts)
@@ -34,12 +40,15 @@ def encode(text: str, n: int) -> str:
 
 
 def decode(text: str, n: int) -> str:
+    """Return the decoded text using Caesar cipher"""
     return encode(text, -n)
 
 
 def process_commandline() -> typing.Tuple[
     typing.Callable[[str, int], str], argparse.Namespace
 ]:
+    """Return the action to take and the args to use"""
+
     parser = argparse.ArgumentParser(description="Caesar cipher encoder/decoder")
     parser.add_argument(
         "action",
