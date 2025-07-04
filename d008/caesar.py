@@ -1,9 +1,23 @@
 """Caesar cipher encoder/decoder"""
 
 import argparse
+import logging
+import os
 import string
+import structlog
 import sys
 import typing
+
+structlog.configure(
+    processors=[
+        structlog.processors.TimeStamper(fmt="iso"),
+        structlog.dev.ConsoleRenderer()
+    ],
+    logger_factory=structlog.stdlib.LoggerFactory(),
+    cache_logger_on_first_use=True,
+)
+logging.basicConfig(level=os.environ.get("LOG_LEVEL", "info").upper())
+logger = structlog.get_logger(__name__)
 
 ALPHABET = (
     string.ascii_lowercase
@@ -12,7 +26,6 @@ ALPHABET = (
     + string.punctuation
     + " "
 )
-
 
 def chr2idx(char: str) -> int:
     """Return the index of a character in the alphabet"""
@@ -33,9 +46,17 @@ def shift(i: int, n: int) -> int:
 
 def encode(text: str, n: int) -> str:
     """Return the encoded text using Caesar cipher"""
-    idxs = map(chr2idx, text)
-    shifts = map(lambda i: shift(i, n), idxs)
-    encoded = map(idx2chr, shifts)
+    logger.info(f"Encoding text '{text}' with shift {n}")
+
+    idxs = list(map(chr2idx, text))
+    logger.debug(f"Character indices: {idxs}")
+
+    shifts = list(map(lambda i: shift(i, n), idxs))
+    logger.debug(f"Shifted indices: {shifts}")
+
+    encoded = list(map(idx2chr, shifts))
+    logger.debug(f"Encoded characters: {encoded}")
+
     return "".join(encoded)
 
 
