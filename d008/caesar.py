@@ -4,9 +4,10 @@ import argparse
 import logging
 import os
 import string
-import structlog
 import sys
 import typing
+
+import structlog
 
 structlog.configure(
     processors=[

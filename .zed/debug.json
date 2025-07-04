@@ -1,0 +1,12 @@
+[
+  {
+    "label": "Caesar Cipher - Encode 'hello' with shift 10",
+    "adapter": "Debugpy",
+    "request": "launch",
+    "program": "d008/caesar.py",
+    "args": ["encode", "hellp", "10"],
+    "env": {
+      "LOG_LEVEL": "debug"
+    }
+  }
+]
