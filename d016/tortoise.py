@@ -20,10 +20,9 @@ import argparse
 import sys
 import turtle
 
-# Use absolute import to avoid mypy issues
-import d016.instruction as instruction
 import structlog
 
+import d016.instruction as instruction
 import util.logging
 
 util.logging.init()

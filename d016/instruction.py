@@ -2,9 +2,8 @@
 A class representing a turtle instruction.
 """
 
-import typing
-
 import turtle
+import typing
 
 
 class Instruction:
