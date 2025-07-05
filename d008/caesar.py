@@ -2,9 +2,10 @@
 
 import argparse
 import string
-import structlog
 import sys
 import typing
+
+import structlog
 
 import util.logging
 

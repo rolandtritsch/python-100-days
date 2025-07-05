@@ -2,9 +2,11 @@
 
 import logging
 import os
+
 import structlog
 
-def init():
+
+def init() -> None:
     structlog.configure(
         processors=[
             structlog.processors.TimeStamper(fmt="iso"),
