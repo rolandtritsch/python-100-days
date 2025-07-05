@@ -4,8 +4,7 @@ A class representing a turtle instruction.
 
 import typing
 
-if typing.TYPE_CHECKING:
-    import turtle
+import turtle
 
 
 class Instruction:
