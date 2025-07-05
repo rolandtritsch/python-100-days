@@ -12,7 +12,7 @@ import structlog
 structlog.configure(
     processors=[
         structlog.processors.TimeStamper(fmt="iso"),
-        structlog.dev.ConsoleRenderer()
+        structlog.dev.ConsoleRenderer(),
     ],
     logger_factory=structlog.stdlib.LoggerFactory(),
     cache_logger_on_first_use=True,
@@ -27,6 +27,7 @@ ALPHABET = (
     + string.punctuation
     + " "
 )
+
 
 def chr2idx(char: str) -> int:
     """Return the index of a character in the alphabet"""
@@ -66,7 +67,7 @@ def decode(text: str, n: int) -> str:
     return encode(text, -n)
 
 
-def process_commandline() -> typing.Tuple[
+def process_commandline() -> tuple[
     typing.Callable[[str, int], str], argparse.Namespace
 ]:
     """Return the action to take and the args to use"""
