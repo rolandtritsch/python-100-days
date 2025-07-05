@@ -5,9 +5,7 @@ description = "100 Days of Python Programming Challenge"
 authors = [{ name = "Your Name", email = "your.email@example.com" }]
 readme = "README.md"
 requires-python = ">=3.8"
-dependencies = [
-    "structlog>=25.4.0",
-]
+dependencies = ["structlog>=25.4.0"]
 
 [tool.ruff]
 lint.select = ["E", "F", "I"]
@@ -25,6 +23,4 @@ check_untyped_defs = true
 disallow_untyped_decorators = true
 
 [dependency-groups]
-dev = [
-    "debugpy>=1.8.14",
-]
+dev = ["debugpy>=1.8.14"]

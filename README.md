@@ -11,5 +11,5 @@ To make this work you need to ...
 * run `uv tool run ruff check 001`
 * run `uv tool run mypy 001`
 * run `uv tool run pytest 001`
-* run `uv run python 001/hello.py`
+* run `PYTHONPATH=. uv run python 001/hello.py`
 * run `uv run python -m pydoc -b`

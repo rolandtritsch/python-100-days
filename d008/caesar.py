@@ -1,23 +1,14 @@
 """Caesar cipher encoder/decoder"""
 
 import argparse
-import logging
-import os
 import string
+import structlog
 import sys
 import typing
 
-import structlog
+import util.logging
 
-structlog.configure(
-    processors=[
-        structlog.processors.TimeStamper(fmt="iso"),
-        structlog.dev.ConsoleRenderer(),
-    ],
-    logger_factory=structlog.stdlib.LoggerFactory(),
-    cache_logger_on_first_use=True,
-)
-logging.basicConfig(level=os.environ.get("LOG_LEVEL", "info").upper())
+util.logging.init()
 logger = structlog.get_logger(__name__)
 
 ALPHABET = (
