@@ -2,10 +2,9 @@
 A class representing a turtle instruction.
 """
 
-from typing import override
-from typing import TYPE_CHECKING
+import typing
 
-if TYPE_CHECKING:
+if typing.TYPE_CHECKING:
     import turtle
 
 
@@ -32,18 +31,18 @@ class Forward(Instruction):
     def __init__(self, distance: int) -> None:
         self.distance = distance
 
-    @override
+    @typing.override
     def execute(self, turtle: "turtle.Turtle") -> None:
         turtle.forward(self.distance)
 
 
 class Left(Instruction):
-    @override
+    @typing.override
     def execute(self, turtle: "turtle.Turtle") -> None:
         turtle.left(90)
 
 
 class Right(Instruction):
-    @override
+    @typing.override
     def execute(self, turtle: "turtle.Turtle") -> None:
         turtle.right(90)
