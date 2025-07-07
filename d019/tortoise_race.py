@@ -8,7 +8,7 @@ import argparse
 import random
 import sys
 import time
-import tkinter.messagebox
+import tkinter.messagebox as messagebox
 import turtle
 import typing
 
@@ -28,40 +28,72 @@ def winner(turtles: dict[str, turtle.Turtle]) -> str:
     return max(turtles, key=lambda k: turtles[k].xcor())
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Do a turtle race.")
-    parser.add_argument("num_turtles", type=int, help="Number of turtles to race")
+def box_it(screen: turtle.Screen):
+    t = turtle.Turtle()
+    t.color("black")
+    t.pen(fillcolor="black", pencolor="red", pensize=10)
+    t.teleport(-screen.canvwidth / 2, screen.canvheight / 2)
+    t.goto(-screen.canvwidth / 2, -screen.canvheight / 2)
+    t.goto(screen.canvwidth / 2, -screen.canvheight / 2)
+    t.goto(screen.canvwidth / 2, screen.canvheight / 2)
+    t.goto(-screen.canvwidth / 2, screen.canvheight / 2)
+
+
+def init_turtles(num_turtles: int, screen: turtle.Screen) -> dict[str, turtle.Turtle]:
+    spacing = screen.canvheight / (num_turtles + 1)
+
+    turtles = {}
+    screen.colormode(255)
+    for n in range(num_turtles):
+        t = turtle.Turtle()
+        t.shape("turtle")
+        t.color(
+            (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        )
+        t.teleport(-screen.canvwidth / 2, -screen.canvheight / 2 + spacing * (n + 1))
+        turtles[f"turtle_{n}"] = t
+
+    return turtles
+
+
+def run_race(turtles: dict[str, turtle.Turtle], screen: turtle.Screen) -> None:
+    while not done(turtles, screen):
+        for t in turtles.values():
+            t.forward(random.randint(1, 100))
+        time.sleep(0.1)
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Turtle Race")
+    parser.add_argument(
+        "num_turtles", type=int, help="Number of turtles to race",
+    )
+
     args = parser.parse_args()
 
     if args.num_turtles not in [1, 10]:
         logger.error("Number of turtles must be in [1, 10]")
         sys.exit(1)
 
-    s = turtle.Screen()
-    s.title("Turtle Race")
-    s.colormode(255)
-    spacing = s.canvheight / (args.num_turtles + 1)
+    return args
 
-    turtles = {}
-    for n in range(args.num_turtles):
-        t = turtle.Turtle()
-        t.shape("turtle")
-        t.color(
-            (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        )
-        t.teleport(-s.canvwidth, -s.canvheight / 2 + spacing * (n + 1))
-        turtles[f"turtle_{n}"] = t
 
+def main() -> None:
+    args = parse_args()
+
+    screen = turtle.Screen()
+    screen.title("Turtle Race")
+
+    box_it(screen)
+
+    turtles = init_turtles(args.num_turtles, screen)
     logger.info(f"Turtles initialized: {turtles}")
 
-    while not done(turtles, s):
-        for t in turtles.values():
-            t.forward(random.randint(1, 100))
-        time.sleep(0.1)
+    run_race(turtles, screen)
 
-    tkinter.messagebox.showinfo(title="The winner is:", message=winner(turtles))
+    messagebox.showinfo(title="The winner is:", message=winner(turtles))
 
-    s.exitonclick()
+    screen.exitonclick()
 
     sys.exit(0)
 
