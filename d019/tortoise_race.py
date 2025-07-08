@@ -43,13 +43,15 @@ def init_turtles(num_turtles: int, screen: turtle.Screen) -> dict[str, turtle.Tu
     spacing = screen.canvheight / (num_turtles + 1)
 
     turtles = {}
-    screen.colormode(255)
+    colors = [
+        "red", "orange", "yellow", "green", "blue",
+        "purple", "pink", "cyan", "magenta", "lime",
+        "brown", "gray", "black", "gold"
+    ]
     for n in range(num_turtles):
         t = turtle.Turtle()
         t.shape("turtle")
-        t.color(
-            (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        )
+        t.color(colors[n % len(colors)])
         t.teleport(-screen.canvwidth / 2, -screen.canvheight / 2 + spacing * (n + 1))
         turtles[f"turtle_{n}"] = t
 
@@ -71,8 +73,8 @@ def parse_args() -> argparse.Namespace:
 
     args = parser.parse_args()
 
-    if args.num_turtles not in [1, 10]:
-        logger.error("Number of turtles must be in [1, 10]")
+    if args.num_turtles not in range(1, 10+1):
+        logger.error("Number of turtles must be between 1 and 10")
         sys.exit(1)
 
     return args
